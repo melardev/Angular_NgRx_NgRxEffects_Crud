@@ -1,0 +1,41 @@
+<h1>Todos</h1>
+<div>
+  <a [routerLink]="['/todos/create']" class='btn btn-success'>Add new</a>
+</div>
+
+<table>
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>Completed</th>
+    <th>Created At</th>
+    <th>Updated At</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tr *ngFor="let todo of todos">
+    <td>
+      {{todo.title}}
+    </td>
+    <td>
+      <input type='checkbox' (click)='toggleComplete(todo)' [checked]="todo.completed"/>
+    </td>
+    <td>
+      {{todo.created_at}}
+    </td>
+    <td>
+      {{todo.updated_at}}
+    </td>
+    <td>
+      <!-- <span (click)='getDetails(todo)' class='btn btn-info'>Details</span> -->
+      <a [routerLink]="['/todos/', todo.id]" class="btn btn-primary active" role="button"
+         routerLinkActive="active">Details</a>
+    </td>
+    <td>
+      <a [routerLink]="['/todos/', todo.id, 'edit']" class='btn btn-warning'>Edit</a>
+    </td>
+    <td>
+      <button type="button" class="btn btn-danger" (click)='deleteTodo(todo)'>Delete</button>
+    </td>
+  </tr>
+</table>
